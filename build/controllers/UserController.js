@@ -15,7 +15,6 @@ class UserController {
         console.log("Inside here");
         this.app = app;
         this.userDao = userDao;
-        this.app.get('/hello123', (req, res) => res.send('hello 123'));
         this.app.get('/users', this.findAllUsers);
         this.app.get('/users/:userid', this.findUserById);
         this.app.post('/users', this.createUser);
