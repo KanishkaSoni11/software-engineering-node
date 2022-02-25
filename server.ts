@@ -1,9 +1,11 @@
 import express, {Request, Response} from 'express';
 import UserController from "./controllers/UserController";
-import UserDao from "./daos/UserDao";
 import mongoose from "mongoose";
-import TuitDao from "./daos/TuitDao";
 import TuitController from "./controllers/TuitController";
+import LikeController from "./controllers/LikeController";
+import FollowController from "./controllers/FollowController";
+import BookmarkController from "./controllers/BookmarkController";
+import MessageController from "./controllers/MessageController";
 
 // connect to the database
 
@@ -13,15 +15,19 @@ mongoose.connect(connectionString);
 // create RESTful Web service API
 const app = express();
 app.use(express.json());
-
+console.log("Here");
 app.get('/hello', (req: Request, res: Response) =>
     res.send('Hello World!'));
 
 app.get('/add/:a/:b', (req: Request, res: Response) =>
     res.send(req.params.a + req.params.b));
 
-const userController = new UserController(app, new UserDao());
-const tuitController = new TuitController(app, new TuitDao());
+const userController = UserController.getInstance(app);
+const tuitController = TuitController.getInstance(app);
+const likesController = LikeController.getInstance(app);
+const followsController = FollowController.getInstance(app);
+const bookmarksController = BookmarkController.getInstance(app);
+const messageController = MessageController.getInstance(app);
 
 
 const PORT = 4000;
