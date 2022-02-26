@@ -59,7 +59,7 @@ export default class BookmarkDao implements BookmarkDaoI {
      * @param tid Tuit's primary key
      * @returns Promise To be notified when user is retrieved from the database
      */
-    userBookmarksTuit = async (uid: string, tid: string): Promise<any> =>
+    userBookmarksTuit = async (uid: string, tid: string): Promise<Bookmarks> =>
         BookmarkModel.create({tuit: tid, bookmarkedBy: uid});
     /**
      * Removes the bookmark from the database
