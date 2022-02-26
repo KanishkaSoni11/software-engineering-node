@@ -28,6 +28,6 @@ const MessageSchema = new mongoose_1.default.Schema({
     message: { type: String, required: true },
     to: { type: mongoose_1.Schema.Types.ObjectId, ref: "UserModel" },
     from: { type: mongoose_1.Schema.Types.ObjectId, ref: "UserModel" },
-    sentOn: { type: Date, required: true }
+    sentOn: { type: Date, default: Date.now }
 }, { collection: "messages" });
 exports.default = MessageSchema;

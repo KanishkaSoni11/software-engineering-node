@@ -34,7 +34,7 @@ export default class MessageDao implements MessageDaoI {
      * @returns Promise To be notified when user is retrieved from the database
      */
     findRecdMessages = async (uid: string): Promise<Messages[]> =>
-        MessageModel.find({from: uid}).populate("to").exec();
+        MessageModel.find({from: uid});
 
     /**
      * Uses UserModel to retrieve all user documents from user collection
@@ -42,7 +42,7 @@ export default class MessageDao implements MessageDaoI {
      * @returns Promise To be notified when user is retrieved from the database
      */
     findSentMessages = async (uid: string): Promise<Messages[]> =>
-        MessageModel.find({to: uid}).populate("from").exec();
+        MessageModel.find({to: uid});
 
     /**
      * Removes all messages from the user from the database
