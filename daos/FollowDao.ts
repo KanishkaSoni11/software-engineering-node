@@ -51,8 +51,8 @@ export default class FollowDao implements FollowDaoI {
      * @param uid User's Primary key
      * @param uid1 User's Primary key
      */
-    userFollowsAUser = async (uid: string, uid1: string): Promise<any> =>
-        FollowModel.create({userFollowed: uid, userFollowing: uid1});
+    userFollowsAUser = async (uid: string, uid1: string): Promise<Follow> =>
+        FollowModel.create({userFollowed: uid1, userFollowing: uid});
 
     /**
      * Removes message from the database for respective users
