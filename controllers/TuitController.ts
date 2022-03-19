@@ -88,7 +88,7 @@ export default class TuitController implements TuitControllerI {
      * database
      */
     createTuitByUser = (req: Request, res: Response) =>
-        TuitController.tuitDao.crateTuitByUser(req.params.uid, req.body)
+        TuitController.tuitDao.createTuitByUser(req.params.uid, req.body)
             .then((tuit: Tuit) => res.json(tuit));
 
     /**
