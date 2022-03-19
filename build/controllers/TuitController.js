@@ -76,6 +76,8 @@ class TuitController {
          */
         this.deleteTuit = (req, res) => TuitController.tuitDao.deleteTuit(req.params.uid)
             .then((status) => res.send(status));
+        this.deleteByTuit = (req, res) => TuitController.tuitDao.deleteByTuit(req.params.tuit)
+            .then(status => res.send(status));
     }
 }
 exports.default = TuitController;
@@ -96,6 +98,7 @@ TuitController.getInstance = (app) => {
         app.post("/api/users/:uid/tuits", TuitController.tuitController.createTuitByUser);
         app.put("/api/tuits/:uid", TuitController.tuitController.updateTuit);
         app.delete("/api/tuits/:uid", TuitController.tuitController.deleteTuit);
+        app.get("/api/tuits/tuit/:tuit/delete", TuitController.tuitController.deleteByTuit);
     }
     return TuitController.tuitController;
 };
