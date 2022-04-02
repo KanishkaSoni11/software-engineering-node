@@ -30,7 +30,7 @@ mongoose.connect(connectionString);
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: "http://localhost:3000"
+    origin: "https://lucent-madeleine-fa169e.netlify.app"
 }));
 
 let sess = {
