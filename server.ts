@@ -23,15 +23,14 @@ import UnlikeController from "./controllers/UnlikeController";
 const cors = require("cors");
 const session = require("express-session");
 
-
-const connectionString = `mongodb+srv://kanishkasoni:kanu17@cluster0.ilo4h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
-mongoose.connect(connectionString);
-
 const app = express();
 app.use(cors({
     credentials: true,
     origin: "https://lucent-madeleine-fa169e.netlify.app"
 }));
+
+const connectionString = `mongodb+srv://kanishkasoni:kanu17@cluster0.ilo4h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
+mongoose.connect(connectionString);
 
 let sess = {
     secret: 'abc',
