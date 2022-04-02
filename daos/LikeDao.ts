@@ -1,8 +1,19 @@
 import LikeDaoI from "../interfaces/LikeDaoI";
 import LikeModel from "../mongoose/likes/LikeModel";
 import Like from "../models/likes/Like";
+/**
+ * @class LikeDao Implements Data Access Object managing data storage
+ * of Users
+ * @property {LikeDao} likeDao Private single instance of MessageDao
+ */
+
+
 export default class LikeDao implements LikeDaoI {
     private static likeDao: LikeDao | null = null;
+    /**
+     * Creates singleton DAO instance
+     * @returns LikeDao
+     */
     public static getInstance = (): LikeDao => {
         if(LikeDao.likeDao === null) {
             LikeDao.likeDao = new LikeDao();
@@ -10,11 +21,21 @@ export default class LikeDao implements LikeDaoI {
         return LikeDao.likeDao;
     }
     private constructor() {}
+    /**
+     * Uses TuitModel to retrieve single tuit document from tuit collection
+     * @param tid Tuit's primary key
+     * @returns Promise To be notified when user is retrieved from the database
+     */
     findAllUsersThatLikedTuit = async (tid: string): Promise<Like[]> =>
         LikeModel
             .find({tuit: tid})
             .populate("likedBy")
             .exec();
+    /**
+     * Uses TuitModel to retrieve single tuit document from tuit collection
+     * @param uid User's primary key
+     * @returns Promise To be notified when user is retrieved from the database
+     */
     findAllTuitsLikedByUser = async (uid: string): Promise<Like[]> =>
         LikeModel
             .find({likedBy: uid})
@@ -25,12 +46,36 @@ export default class LikeDao implements LikeDaoI {
                 }
             })
             .exec();
+    /**
+     * Inserts an instance of tuit and the user into the database
+     * @param uid User's primary key
+     * @param tid Tuit's primary key
+     * @returns Promise To be notified when user is retrieved from the database
+     */
     userLikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.create({tuit: tid, likedBy: uid});
+
+    /**
+     * Uses TuitModel to retrieve all tuit documents from users collection
+     * @param uid User's primary key
+     * @returns Promise To be notified when user is retrieved from the database
+     */
+
     findUserLikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.findOne({tuit: tid, likedBy: uid});
+    /**
+     * Removes the likes from the user from the database for the tuit
+     * @param uid User's primary key
+     * @param tid Tuit's primary key
+     * @returns Promise To be notified when user is retrieved from the database
+     */
     userUnlikesTuit = async (uid: string, tid: string): Promise<any> =>
         LikeModel.deleteOne({tuit: tid, likedBy: uid});
+
+    /**
+     * Uses Like Model to count the number of likes on that tuit.
+     * @param tid tuit id
+     */
     countHowManyLikedTuit = async (tid: string): Promise<any> =>
         LikeModel.count({tuit: tid});
 }
