@@ -1,3 +1,8 @@
+/**
+ * @file Implements mongoose model to CRUD
+ * documents in the unlikes shcema
+ */
+
 import mongoose, {Schema} from "mongoose";
 import Unlike from "../../models/unlikes/Unlike";
 

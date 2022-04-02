@@ -47,7 +47,7 @@ export default class UnlikeController implements UnlikeControllerI {
     }
 
     /**
-     * Retrieves all users that liked a tuit from the database
+     * Retrieves all users that unliked a tuit from the database
      * @param {Request} req Represents request from client, including the path
      * parameter tid representing the liked tuit
      * @param {Response} res Represents response to client, including the
@@ -58,7 +58,7 @@ export default class UnlikeController implements UnlikeControllerI {
             .then(unlikes => res.json(unlikes));
 
     /**
-     * Retrieves all tuits liked by a user from the database
+     * Retrieves all tuits unliked by a user from the database
      * @param {Request} req Represents request from client, including the path
      * parameter uid representing the user liked the tuits
      * @param {Response} res Represents response to client, including the

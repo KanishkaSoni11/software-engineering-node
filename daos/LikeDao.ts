@@ -1,6 +1,7 @@
 import LikeDaoI from "../interfaces/LikeDaoI";
 import LikeModel from "../mongoose/likes/LikeModel";
 import Like from "../models/likes/Like";
+
 /**
  * @class LikeDao Implements Data Access Object managing data storage
  * of Users
@@ -15,12 +16,15 @@ export default class LikeDao implements LikeDaoI {
      * @returns LikeDao
      */
     public static getInstance = (): LikeDao => {
-        if(LikeDao.likeDao === null) {
+        if (LikeDao.likeDao === null) {
             LikeDao.likeDao = new LikeDao();
         }
         return LikeDao.likeDao;
     }
-    private constructor() {}
+
+    private constructor() {
+    }
+
     /**
      * Uses TuitModel to retrieve single tuit document from tuit collection
      * @param tid Tuit's primary key

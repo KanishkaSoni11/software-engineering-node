@@ -7,8 +7,8 @@ import User from "../users/User";
 
 /**
  * @typedef Unlike Represents likes relationship between a user and a tuit,
- * as in a user likes a tuit
- * @property {Tuit} tuit Tuit being liked
+ * as in a user unlikes a tuit
+ * @property {Tuit} tuit Tuit being unliked
  * @property {User} likedBy User liking the tuit
  */
 
