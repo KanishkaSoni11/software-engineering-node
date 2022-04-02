@@ -27,10 +27,18 @@ const connectionString = `mongodb+srv://kanishkasoni:kanu17@cluster0.ilo4h.mongo
 mongoose.connect(connectionString);
 
 const app = express();
-app.use(cors({
-    credentials: true,
-    origin: process.env.CORS_ORIGIN
-}));
+const whitelist = ["*" , "https://lucent-madeleine-fa169e.netlify.app" ,"http://lucent-madeleine-fa169e.netlify.app"]
+const corsOptions = {
+    origin: function(origin,callback){
+        if(!origin || whitelist.indexOf(origin) !== -1)
+            callback(null,true)
+        else
+            callback(new Error("Not Allowed by Cors"))
+    },
+    credentials : true,
+}
+
+app.use(cors(corsOptions));
 
 let sess = {
     secret: process.env.EXPRESS_SESSION_SECRET,
