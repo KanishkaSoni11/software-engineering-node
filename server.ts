@@ -29,11 +29,11 @@ mongoose.connect(connectionString);
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: "https://lucent-madeleine-fa169e.netlify.app"
+    origin: process.env.CORS_ORIGIN
 }));
 
 let sess = {
-    secret: 'abc',
+    secret: process.env.EXPRESS_SESSION_SECRET,
     saveUninitialized: true,
     resave: true,
     cookie: {
