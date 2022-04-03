@@ -15,6 +15,7 @@ import CourseController from "./controllers/CourseController";
 import UserController from "./controllers/UserController";
 import TuitController from "./controllers/TuitController";
 import LikeController from "./controllers/LikeController";
+
 import SessionController from "./controllers/SessionController";
 import AuthenticationController from "./controllers/AuthenticationController";
 import mongoose from "mongoose";
@@ -22,25 +23,26 @@ import GroupController from "./controllers/GroupController";
 import UnlikeController from "./controllers/UnlikeController";
 
 const cors = require("cors");
+
 const session = require("express-session");
 
-// build the connection string
+
 const connectionString = `mongodb+srv://kanishkasoni:kanu17@cluster0.ilo4h.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`;
 mongoose.connect(connectionString)
 
 const app = express();
 app.use(cors({
     credentials: true,
-    origin: process.env.CORS_ORIGIN
+    origin: "https://lucent-madeleine-fa169e.netlify.app"
 }));
 
 let sess = {
-    secret: process.env.EXPRESS_SESSION_SECRET,
+    secret: 'DNGikr8CmM',
     saveUninitialized: true,
     resave: true,
     cookie: {
         sameSite: process.env.NODE_ENV === "production" ? 'none' : 'lax',
-        secure: process.env.NODE_ENV === "production",
+        secure: false
     }
 }
 
@@ -48,6 +50,7 @@ if (process.env.NODE_ENV === 'production') {
     app.set('trust proxy', 1) // trust first proxy
     sess.cookie.secure = true
 }
+
 
 app.use(session(sess))
 app.use(express.json());
@@ -63,9 +66,11 @@ const courseController = new CourseController(app);
 const userController = UserController.getInstance(app);
 const tuitController = TuitController.getInstance(app);
 const likesController = LikeController.getInstance(app);
-const dislikesController = UnlikeController.getInstance(app);
+
+
 SessionController(app);
 AuthenticationController(app);
+UnlikeController.getInstance(app);
 GroupController(app);
 /**
  * Start a server listening at port 4000 locally
