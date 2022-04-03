@@ -3,6 +3,7 @@ import User from "../models/users/User";
 // axios.defaults.baseURL = 'http://localhost:4000/api';
 axios.defaults.baseURL = 'https://hw4mainks.herokuapp.com/api';
 
+
 const findAllUsers = async () =>
     await axios.get('/users');
 

@@ -23,6 +23,9 @@ import UnlikeController from "./controllers/UnlikeController";
 const cors = require("cors");
 const session = require("express-session");
 
+const dotenv = require('dotenv');
+dotenv.config();
+
 // build the connection string
 // const PROTOCOL = "mongodb+srv";
 // const DB_USERNAME = process.env.DB_USERNAME;
